@@ -80,21 +80,33 @@
                     <li class="active">
                         <a href="{{route('admin.index')}}"><i class="menu-icon fa fa-laptop"></i>Bảng điều khiển </a>
                     </li>
+                    <!--Phân quyền admin-->
                     @can('admin')
                     <li class="menu-title">Quản lý nhân viên</li><!-- /.menu-title -->
                     <li class="active">
                         <a href="{{route('admin.user')}}"><i class="menu-icon fa fa-laptop"></i>Quản lý nhân viên</a>
                     </li>
                     @endcan
-                    @can('nvkho')
-                    <li class="menu-title">Quản lý sản phẩm</li><!-- /.menu-title -->
-                    <li class="active">
-                        {{-- @can('admin') --}}
-                        <a href="{{route('category.index')}}"><i class="menu-icon fa fa-laptop"></i>Danh mục sản phẩm</a>   
-                        <a href="{{route('product.index')}}"><i class="menu-icon fa fa-laptop"></i>Sản phẩm</a>
-                        <a href="{{route('admin.order')}}"><i class="menu-icon fa fa-laptop"></i>Danh sách mua hàng</a>
-                        {{-- @endcan --}}
-                    </li>
+                    
+                    @can('nvkho')    
+                        <li class="menu-title">Quản lý sản phẩm</li><!-- /.menu-title -->
+                        <li class="active">
+                            <!--Phân quyền admin-->
+                            @can('admin')
+                            <a href="{{route('category.index')}}"><i class="menu-icon fa fa-laptop"></i>Danh mục sản phẩm</a>  
+                            @endcan
+                            <!--Phân quyền NVKho-->
+                            @can('nvkho')
+                                <a href="{{route('product.index')}}"><i class="menu-icon fa fa-laptop"></i>Sản phẩm</a>   
+                            @endcan
+                        </li>
+                    @endcan
+                    
+                    @can('nvthungan')
+                        <li class="menu-title">Quản lý đơn hàng</li><!-- /.menu-title -->
+                        <li class="active">
+                            <a href="{{route('admin.order')}}"><i class="menu-icon fa fa-laptop"></i>Danh sách mua hàng</a>
+                        </li>
                     @endcan
                     
                     

@@ -1,6 +1,5 @@
 @extends('admin.index')
 @section('title', 'Danh mục sản phẩm')
-@can('admin')
 @section('content')
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -84,4 +83,3 @@
     </div><!-- .animated -->
 </div><!-- .content -->
 @endsection
-@endcan

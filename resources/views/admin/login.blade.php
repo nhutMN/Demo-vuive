@@ -33,20 +33,27 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-form">
+                    
                     <form method="POST" action="">
                         @csrf
                         <div class="form-group">
-                            <label>User</label>
-                            <input type="text" name="name" class="form-control" placeholder="User name">
+                            <label>Tên đăng nhập</label>
+                            <input type="text" name="name" class="form-control" placeholder="Nhập tên đăng nhập">
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <label>Mật khẩu</label>
+                            <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Đăng nhập</button>
                     </form>
                 </div>
             </div>
+            
         </div>
     </div>
 

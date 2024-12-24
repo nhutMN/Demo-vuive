@@ -108,8 +108,7 @@
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-lg py-3 btn-block">Thanh toán</button>
                                         </form>
-                                    </div>
-                                    
+                                    </div>                                    
                                     
                                 </div>
                             </div>

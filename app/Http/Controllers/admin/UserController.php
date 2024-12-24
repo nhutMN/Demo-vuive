@@ -38,9 +38,16 @@ class UserController extends Controller
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => 'required',
             'role' => 'required'
-        ],[
-
+        ], [
+            'name.required' => 'Tên người dùng là bắt buộc.',
+            'name.unique' => 'Tên người dùng đã tồn tại.',
+            'email.required' => 'Email là bắt buộc.',
+            'email.email' => 'Định dạng email không hợp lệ.',
+            'email.unique' => 'Email đã tồn tại.',
+            'password.required' => 'Mật khẩu là bắt buộc.',
+            'role.required' => 'Vai trò là bắt buộc.'
         ]);
+        
     
         $data = $request->only('name', 'email', 'password', 'role');
         $pass_hash = bcrypt($request->password);
@@ -61,10 +68,17 @@ class UserController extends Controller
             'name' => ['required', 'unique:users,name,' . $user->id],
             'email' => ['required', 'email', 'unique:users,email,' . $user->id],
             'role' => ['required']
+        ], [
+            'name.required' => 'Tên người dùng là bắt buộc.',
+            'name.unique' => 'Tên người dùng đã tồn tại.',
+            'email.required' => 'Email là bắt buộc.',
+            'email.email' => 'Định dạng email không hợp lệ.',
+            'email.unique' => 'Email đã tồn tại.',
+            'role.required' => 'Vai trò là bắt buộc.'
         ]);
     
         $data = $request->only('name', 'email', 'role');
-        if ($request->password) {
+        if ($request->filled('password')) {
             $data['password'] = bcrypt($request->password);
         }
     
@@ -74,6 +88,7 @@ class UserController extends Controller
     
         return redirect()->back()->with('error', 'Cập nhật người dùng thất bại.');
     }
+    
     
     public function destroy(User $user) {
         if ($user->delete()) {

@@ -77,3 +77,7 @@ Route::get('/admin/order/export-html/{id}', [OrderController::class, 'exportHtml
 Route::get('/admin/revenue/export-html', [OrderController::class, 'exportRevenueHtml'])->name('admin.revenue.export.html');
 Route::get('/admin/revenue/month-export-html', [OrderController::class, 'exportRevenueHtmlMonth'])->name('admin.revenue.exportmonth.html');
 
+Route::get('/admin/products/export-excel-html', [ProductController::class, 'exportExcelHtml'])->name('admin.products.export.excel.html');
+
+
+

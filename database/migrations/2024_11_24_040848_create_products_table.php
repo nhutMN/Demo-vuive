@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100)->unique();
             $table->string('image', 100);
-            $table->float('price', 10, 2);
-            $table->float('sale_price', 10, 2)->nullable();
+            $table->decimal('price', 15, 2);  // Chỉnh sửa kiểu dữ liệu price và sale_price
+            $table->decimal('sale_price', 15, 2)->nullable();
             $table->unsignedBigInteger('category_id');
             $table->text('description');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)->nullable();
             $table->timestamps();
 
+            // Khóa ngoại với bảng categories
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
         });
     }
 
@@ -35,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
+

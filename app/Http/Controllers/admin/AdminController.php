@@ -34,14 +34,17 @@ class AdminController extends Controller
             'name' => 'required|exists:users,name',
             'password' => 'required'
         ]);
-
-        $data = $request->only('name','password');
+    
+        $data = $request->only('name', 'password');
         $check = auth()->attempt($data);
-        if($check){
+    
+        if ($check) {
             return redirect()->route('admin.index');
         }
-        return redirect()->back();
+    
+        return redirect()->back()->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng.');
     }
+    
 
     public function logout(){
         auth()->logout();
@@ -51,23 +54,4 @@ class AdminController extends Controller
     public function register(){
         return view('admin.register');
     }
-
-    // public function postRegister(Request $request){
-    //     $request->validate([
-    //         'name' => 'required|min:6|max:100',
-    //         'role' => 'required|min:6|max:100',
-    //         'email' => 'required|email|unique:users',
-    //         'password' => 'required|'
-    //     ]);
-
-    //     $data = $request->only('name', 'email', 'password', 'role');
-    //     $pass_hash = bcrypt($request->password);
-    //     $data['password'] = $pass_hash;
-
-    //     if(User::create($data)){
-    //         return redirect()->route('admin.login');
-    //     }
-    //     return redirect()->back();
-
-    // }
 }

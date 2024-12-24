@@ -23,4 +23,11 @@ class Product extends Model
     public function cate(){
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+
+    // Mối quan hệ giữa Product và OrderItem
+public function orderItems()
+{
+    return $this->hasMany(OrderItem::class);
+}
+
 }

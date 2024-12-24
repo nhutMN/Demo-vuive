@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->decimal('total_price', 10, 2);
+            $table->decimal('total_price', 15, 2);  // Kiểu dữ liệu chính xác cho total_price
             $table->integer('total_quantity');
             $table->string('status')->default('pending');
             $table->timestamps();

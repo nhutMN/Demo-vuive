@@ -1,6 +1,5 @@
 @extends('admin.index')
 @section('title', 'Danh mục sản phẩm')
-@can('admin')
 @section('content')
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -72,7 +71,7 @@
                                             @csrf @method('DELETE')
                                             <a href="{{ route('category.edit', $item->id) }}" class="btn btn-sm btn-primary"><i
                                                     class="fa fa-edit"></i>Sửa</a>
-                                            <button href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Xóa</button>
+                                            <button href="" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="fa fa-trash"></i>Xóa</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -88,4 +87,3 @@
     </div><!-- .animated -->
 </div><!-- .content -->
 @endsection
-@endcan

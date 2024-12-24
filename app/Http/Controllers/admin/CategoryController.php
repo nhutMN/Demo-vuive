@@ -42,13 +42,22 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories'
+        ], [
+            'name.required' => 'Tên danh mục là bắt buộc.',
+            'name.unique' => 'Tên danh mục đã tồn tại.'
         ]);
-        $data = $request->all('name', 'status');
-        $data['status'] = $request->has('status') ? 1 : 0;
-        Category::create($data);
 
-        return redirect()->route('category.index');
+        try {
+            $data = $request->all('name', 'status');
+            $data['status'] = $request->has('status') ? 1 : 0;
+            Category::create($data);
+            
+            return redirect()->route('category.index')->with('success', 'Danh mục đã được thêm thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra khi thêm danh mục.')->withInput();
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -72,14 +81,23 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|unique:categories,name,'.$category->id
+            'name' => 'required|unique:categories,name,' . $category->id
+        ], [
+            'name.required' => 'Tên danh mục là bắt buộc.',
+            'name.unique' => 'Tên danh mục đã tồn tại.'
         ]);
-        
-        $data = $request->all(['name']);
-        $data['status'] = $request->has('status') ? 1 : 0;
-        $category->update($data);
-        return redirect()->route('category.index');
+
+        try {
+            $data = $request->all(['name']);
+            $data['status'] = $request->has('status') ? 1 : 0;
+            $category->update($data);
+            
+            return redirect()->route('category.index')->with('success', 'Danh mục đã được sửa thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra khi sửa danh mục.')->withInput();
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

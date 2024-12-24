@@ -1,6 +1,5 @@
 @extends('admin.index')
 @section('title', 'Sản phẩm')
-@can('nvkho')
 @section('content')
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -26,9 +25,13 @@
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-success btn-sm" onclick="window.location.href='{{route('product.create')}}';">
                                 <i class="fa fa-plus"></i> Thêm mới
-                            </button>                            
+                            </button>      
+                            <a href="{{ route('admin.products.export.excel.html') }}" class="btn btn-sm btn-warning">
+                                <i class="fa fa-file-excel"></i> Xuất Excel
+                            </a>                      
                         </div>
                     </div>
+                    
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
@@ -80,13 +83,14 @@
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
                                     <td class="text-right">
-                                        <form action="{{ route('product.destroy', $item->id) }}" method="POST">
-                                            @csrf @method('DELETE')
-                                            <a href="{{ route('product.edit', $item->id) }}" class="btn btn-sm btn-primary"><i
-                                                    class="fa fa-edit"></i>Sửa</a>
-                                            <button href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Xóa</button>
+                                        <form action="{{ route('product.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('product.edit', $item->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Sửa</a>
+                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Xóa</button>
                                         </form>
                                     </td>
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -100,4 +104,3 @@
     </div><!-- .animated -->
 </div><!-- .content -->
 @endsection
-@endcan

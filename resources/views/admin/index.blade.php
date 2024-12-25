@@ -80,7 +80,6 @@
                     <li class="active">
                         <a href="{{route('admin.index')}}"><i class="menu-icon fa fa-laptop"></i>Bảng điều khiển </a>
                     </li>
-                    <!--Phân quyền admin-->
                     @can('admin')
                     <li class="menu-title">Quản lý nhân viên</li><!-- /.menu-title -->
                     <li class="active">
@@ -88,43 +87,36 @@
                     </li>
                     @endcan
                     
-                    @can('nvkho')    
-                        <li class="menu-title">Quản lý sản phẩm</li><!-- /.menu-title -->
-                        <li class="active">
-                            <!--Phân quyền admin-->
-                            @can('admin')
-                            <a href="{{route('category.index')}}"><i class="menu-icon fa fa-laptop"></i>Danh mục sản phẩm</a>  
-                            @endcan
-                            <!--Phân quyền NVKho-->
-                            @can('nvkho')
-                                <a href="{{route('product.index')}}"><i class="menu-icon fa fa-laptop"></i>Sản phẩm</a>   
-                            @endcan
-                        </li>
+                    @can('user') 
+                    <li class="menu-title">Quản lý sản phẩm</li><!-- /.menu-title -->
+                    <li class="active">
+                        @can('admin')
+                        <a href="{{route('category.index')}}"><i class="menu-icon fa fa-laptop"></i>Danh mục sản phẩm</a>  
+                        @endcan
+                        <a href="{{route('product.index')}}"><i class="menu-icon fa fa-laptop"></i>Sản phẩm</a>   
+                    </li>
                     @endcan
                     
-                    @can('nvthungan')
-                        <li class="menu-title">Quản lý đơn hàng</li><!-- /.menu-title -->
-                        <li class="active">
-                            <a href="{{route('admin.order')}}"><i class="menu-icon fa fa-laptop"></i>Danh sách mua hàng</a>
-                        </li>
-                    @endcan
+                    @can('user')
+                    <li class="menu-title">Quản lý đơn hàng</li><!-- /.menu-title -->
+                    <li class="active">
+                        <a href="{{route('admin.order')}}"><i class="menu-icon fa fa-laptop"></i>Danh sách mua hàng</a>
+                    </li>  
                     
-                    
-                    {{-- <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
-                        <ul class="sub-menu children dropdown-menu">                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
+                    <li class="menu-title">Quản lý website</li><!-- /.menu-title -->
+                    <li class="active">
+                        <a href="{{route('banner.index')}}"><i class="menu-icon fa fa-laptop"></i>Banner</a>
+                    </li> 
+                    <li class="active">
+                        <a href="{{route('about.index')}}"><i class="menu-icon fa fa-laptop"></i>About</a>
+                    </li> 
 
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                            <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                            <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                            <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                            <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
-                        </ul>
-                    </li> --}}
+
+                    <li class="menu-title">Trang bán hàng</li><!-- /.menu-title -->
+                    <li class="active">
+                        <a href="{{route('layouts.home')}}"><i class="menu-icon fa fa-laptop"></i>Trang bán hàng</a>
+                    </li>
+                    @endcan
                     
                 </ul>
             </div><!-- /.navbar-collapse -->

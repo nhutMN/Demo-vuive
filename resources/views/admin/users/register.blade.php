@@ -70,9 +70,7 @@
                                 <div class="col-12 col-md-9">
                                     <select name="role" id="role-select" class="form-control">
                                         <option value="admin">Admin</option>
-                                        <option value="nvthungan">NV Thu Ngân</option>
-                                        <option value="nvkho">NV Kho</option>
-                                        <option value="nvbanhang">NV Bán Hàng</option>
+                                        <option value="user">User</option>
                                     </select>
                                     <small class="form-text text-muted">Chọn vai trò cho nhân viên</small>
                                     @error('role')

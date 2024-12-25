@@ -28,9 +28,7 @@
                             <p><strong>Tổng giá:</strong> {{ $order->total_price }}</p>
                             <p><strong>Ngày tạo:</strong> {{ $order->created_at }}</p>
                         </div>
-                        <div class="col-md-3">
-                            <a href="{{ route('admin.order.export.html', $order->id) }}" class="btn btn-success">Xuất Excel</a>
-                        </div>
+                        
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-bordered">

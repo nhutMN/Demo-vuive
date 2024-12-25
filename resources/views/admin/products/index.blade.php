@@ -26,9 +26,6 @@
                             <button class="btn btn-success btn-sm" onclick="window.location.href='{{route('product.create')}}';">
                                 <i class="fa fa-plus"></i> Thêm mới
                             </button>      
-                            <a href="{{ route('admin.products.export.excel.html') }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-file-excel"></i> Xuất Excel
-                            </a>                      
                         </div>
                     </div>
                     

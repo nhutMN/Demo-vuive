@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Banner;
+use App\Models\AboutPage;
 
 class HomeController extends Controller
 {
@@ -14,18 +16,18 @@ class HomeController extends Controller
         return view('layouts.index', compact('cate'));
     }
 
-    // public function home($categoryId = null) {
-    //     $cate = Category::orderBy('id', 'DESC')->get();
-    
-    //     // Check if a category ID is provided
-    //     if ($categoryId) {
-    //         $data = Product::where('category_id', $categoryId)->orderBy('id', 'DESC')->get();
-    //     } else {
-    //         $data = Product::orderBy('id', 'DESC')->get();
-    //     }
-    
-    //     return view('layouts.shop', compact('data', 'cate'));
-    // }
+    public function trang_chu(){
+        $cate = Category::orderBy('id', 'DESC')->get();
+        $ban = Banner::orderBy('id', 'DESC')->get();
+        $prot = Product::inRandomOrder('id')->take(6)->get();
+        return view('layouts.trangchu', compact('cate', 'ban', 'prot'));
+    }
+
+    public function about(){
+        $cate = Category::orderBy('id', 'DESC')->get();
+        $about = AboutPage::orderBy('id', 'DESC')->first();
+        return view('layouts.about', compact('cate', 'about'));
+    }
     
     public function home(Request $request, $categoryId = null) {
         $cate = Category::orderBy('id', 'DESC')->get();

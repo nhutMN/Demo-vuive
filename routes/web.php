@@ -6,6 +6,9 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\BannerController;
+use App\Http\Controllers\admin\AboutController;
+
 use App\Http\Controllers\layouts\HomeController;
 use App\Http\Controllers\layouts\CartController;
 use App\Http\Controllers\layouts\CustomerController;
@@ -23,7 +26,9 @@ use App\Http\Controllers\layouts\CustomerController;
 
 // frontend
 Route::group(['prefix' => ''], function(){
-    Route::get('/', [HomeController::class, 'home'])->name('layouts.home');
+    Route::get('/', [HomeController::class, 'trang_chu'])->name('layouts.trangchu');
+    Route::get('/about', [HomeController::class, 'about'])->name('layouts.about');
+    Route::get('/shop', [HomeController::class, 'home'])->name('layouts.home');
     Route::get('/product/{product}',[HomeController::class, 'detail'])->name('layouts.detail');
     Route::get('/shop/{categoryId?}', [HomeController::class, 'home'])->name('shop');
 
@@ -38,15 +43,13 @@ Route::group(['prefix' => ''], function(){
 //backend
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'postLogin']);
-// Route::get('/admin/register', [AdminController::class, 'register'])->name('admin.register');
-// Route::post('/admin/register', [AdminController::class, 'postRegister']);
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/logout',[AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/usermanager', [UserController::class, 'index'])->name('admin.user');
     Route::get('/usermanager/register', [UserController::class, 'register'])->name('admin.register');
     Route::post('/usermanager/register', [UserController::class, 'postRegister']);
-    // Route::get('/info', [UserController::class, 'info'])->name('admin.info');
 
     Route::get('/usermanager/edit/{user}', [UserController::class, 'edit'])->name('admin.user.edit');
     Route::post('/usermanager/update/{user}', [UserController::class, 'update'])->name('admin.user.update');
@@ -55,29 +58,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('banner', BannerController::class);
+    Route::resource('about', AboutController::class);
 
     Route::get('/order', [OrderController::class, 'index'])->name('admin.order');
     Route::get('/order-detail/{id}', [OrderController::class, 'orderDetail'])->name('admin.orderDetail');
+
+
 });
 
 Route::group(['prefix' => 'cart'], function(){
     Route::get('/', [CartController::class, 'view'])->name('cart.view');
     Route::get('/add/{product}', [CartController::class, 'addToCart'])->name('add.cart');
     Route::get('/delete/{id}', [CartController::class, 'deleteCart'])->name('cart.delete');
-    // Route::get('/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
-
-
 });
 
 Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
-Route::get('/admin/order/export-html/{id}', [OrderController::class, 'exportHtml'])->name('admin.order.export.html');
-
-Route::get('/admin/revenue/export-html', [OrderController::class, 'exportRevenueHtml'])->name('admin.revenue.export.html');
-Route::get('/admin/revenue/month-export-html', [OrderController::class, 'exportRevenueHtmlMonth'])->name('admin.revenue.exportmonth.html');
-
-Route::get('/admin/products/export-excel-html', [ProductController::class, 'exportExcelHtml'])->name('admin.products.export.excel.html');
 
 
 

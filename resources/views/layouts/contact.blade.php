@@ -40,7 +40,11 @@
                             <th scope="row">SĐT:</th>
                             <td>0813310032</td>
                         </tr>
-                    </tbody>
+                        <tr>
+                            <th scope="row">github:</th>
+                            <td>https://github.com/nhutMN/WEBSITE-THUONG-MAI-LAPTOP</td>
+                        </tr>
+                    </tbody>                    
                 </table>
             </div>
         </div>

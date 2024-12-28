@@ -12,20 +12,20 @@ class ProductController extends Controller
 {
 
     public function index(Request $request)
-    {
-        $search = $request->get('search');
-        
-        $data = Product::query()
-            ->when($search, function ($query) use ($search) {
-                return $query->where('name', 'like', '%' . $search . '%');
-            })
-            ->orderBy('id', 'DESC')
-            ->get();
+{
+    $search = $request->get('search');
+    
+    $data = Product::query()
+        ->when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })
+        ->orderBy('id', 'DESC')
+        ->paginate(10); // Directly paginate the query builder
 
-        $idCount = $data->count();
-        
-        return view('admin.products.index', compact('data', 'idCount'));
-    }
+    $idCount = $data->total(); // Use total() to get the total count
+
+    return view('admin.products.index', compact('data', 'idCount'));
+}
 
 
     /**

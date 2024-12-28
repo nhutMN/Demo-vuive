@@ -35,7 +35,8 @@ class HomeController extends Controller
     }
 
     
-    public function home(Request $request, $categoryId = null) {
+    public function home(Request $request, $categoryId = null)
+    {
         $cate = Category::orderBy('id', 'DESC')->get();
 
         $search = $request->input('search');
@@ -60,10 +61,11 @@ class HomeController extends Controller
             $query->where('price', '<=', $maxPrice);
         }
 
-        $data = $query->orderBy('id', 'DESC')->get();
-    
+        $data = $query->orderBy('id', 'DESC')->paginate(12);
+
         return view('layouts.shop', compact('data', 'cate'));
     }
+
 
     public function detail(Product $product){
         $cate = Category::orderBy('id', 'DESC')->get();

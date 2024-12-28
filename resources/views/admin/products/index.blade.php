@@ -35,7 +35,6 @@
                                 <p class="mb-0 mr-2 font-weight-bold">Tổng số: {{$idCount}}</p>
                             </div>
                             <div class="d-flex">
-                                <!-- Add form tag for search functionality -->
                                 <form method="GET" action="{{ route('product.index') }}">
                                     <input type="text" name="search" id="tableSearch" class="form-control form-control-sm" 
                                            style="width: 250px;" placeholder="Tìm kiếm..." value="{{ request()->get('search') }}">
@@ -93,6 +92,9 @@
                             </tbody>
                         </table>
                     </div>
+
+                    {{ $data->links('vendor.pagination.bootstrap-4') }}
+
                 </div>
             </div>
 

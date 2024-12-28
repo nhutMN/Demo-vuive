@@ -11,16 +11,21 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Order::query();
+        $query = Order::with('orderUser') 
+                    ->orderBy('id', 'DESC');
 
         if ($request->has('search') && $request->input('search') != '') {
             $query->where('name', 'like', '%' . $request->input('search') . '%');
         }
 
-        $data = $query->orderBy('id', 'DESC')->get();
-        $idCount = $data->count(); 
+        $data = $query->paginate(10);
+
+        $idCount = $data->total(); 
+
         return view('admin.order.index', compact('data', 'idCount'));
     }
+
+
 
 
     public function orderDetail($id) 

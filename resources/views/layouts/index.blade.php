@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <!--
@@ -70,9 +71,9 @@ https://templatemo.com/tm-559-NMN SHOP-shop
                 
                 <div class="navbar align-self-center d-flex">
                     @if (Auth::check())
-                        <a class="nav-icon position-relative text-decoration-none" href="">
+                        <a class="nav-icon position-relative text-decoration-none" href="{{ route('user.profile') }}">
                             <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
-                        </a>
+                        </a>                    
                         <a class="nav-icon position-relative text-decoration-none ms-3" href="{{ route('logout') }}">
                             Logout
                         </a>
@@ -218,6 +219,10 @@ https://templatemo.com/tm-559-NMN SHOP-shop
     <script src="js/templatemo.js"></script>
     <script src="js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!-- End Script -->
 </body>
 

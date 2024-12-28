@@ -51,7 +51,9 @@
                             <tbody>
                                 @foreach ($data as $item)
                                 <tr>
-                                    <td>{{$item->orderUser->name}}</td>
+                                    {{-- <td>{{$item->orderUser->name}}</td> --}}
+                                    <td>{{ $item->orderUser ? $item->orderUser->name : 'N/A' }}</td>
+
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->total_price}}</td>
                                     <td>{{$item->created_at}}</td>
@@ -63,6 +65,8 @@
                             </tbody>
                         </table>
                     </div>
+
+                    {{ $data->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
 

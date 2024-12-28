@@ -38,6 +38,8 @@ Route::group(['prefix' => ''], function(){
     Route::get('/logout', [CustomerController::class, 'logout'])->name('logout');
     Route::get('/register', [CustomerController::class, 'register'])->name('layouts.register');
     Route::post('/register', [CustomerController::class, 'postRegister']);
+    Route::get('/user-profile', [CustomerController::class, 'userProfile'])->name('user.profile')->middleware('auth');
+    Route::post('/user-profile/update', [CustomerController::class, 'updateProfile'])->name('user.update')->middleware('auth');
 
 });
 

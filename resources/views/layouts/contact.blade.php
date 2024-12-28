@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <th scope="row">github:</th>
-                            <td>https://github.com/nhutMN/WEBSITE-THUONG-MAI-LAPTOP</td>
+                            <td><a href="https://github.com/nhutMN/WEBSITE-THUONG-MAI-LAPTOP">https://github.com/nhutMN/WEBSITE-THUONG-MAI-LAPTOP</a></td>
                         </tr>
                     </tbody>                    
                 </table>

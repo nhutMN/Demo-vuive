@@ -32,7 +32,6 @@ class UserController extends Controller
 
     public function postRegister(Request $request)
     {
-        // Kiểm tra và validate dữ liệu đầu vào
         $request->validate([
             'name' => ['required', 'unique:users,name'],
             'email' => ['required', 'email', 'unique:users,email'],

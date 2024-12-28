@@ -33,12 +33,10 @@ class CustomerController extends Controller
 
     public function postRegister(Request $request)
     {
-        // Kiểm tra và validate dữ liệu đầu vào
         $request->validate([
             'name' => ['required', 'unique:users,name'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => 'required',
-            // 'role' => 'required'
         ],[
 
         ]);
@@ -52,4 +50,11 @@ class CustomerController extends Controller
         }
         return redirect()->back();
     }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('layouts.trangchu');
+    }
+
 }

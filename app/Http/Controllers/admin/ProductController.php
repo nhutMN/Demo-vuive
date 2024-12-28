@@ -104,7 +104,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        // Apply validation rules
         $request->validate([
             'name' => 'required|min:4|max:150|unique:products,name,' . $product->id,
             'price' => 'required|numeric|min:0|max:99999999.99',

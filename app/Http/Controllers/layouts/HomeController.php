@@ -28,28 +28,30 @@ class HomeController extends Controller
         $about = AboutPage::orderBy('id', 'DESC')->first();
         return view('layouts.about', compact('cate', 'about'));
     }
+
+    public function contact(){
+        $cate = Category::orderBy('id', 'DESC')->get();
+        return view('layouts.contact', compact('cate'));
+    }
+
     
     public function home(Request $request, $categoryId = null) {
         $cate = Category::orderBy('id', 'DESC')->get();
 
-        // Get the search query from the request
         $search = $request->input('search');
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
 
-        // Check if a category ID is provided
         if ($categoryId) {
             $query = Product::where('category_id', $categoryId);
         } else {
             $query = Product::query();
         }
 
-        // Apply the search filter if search keyword is provided
         if ($search) {
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        // Apply price filters if provided
         if ($minPrice) {
             $query->where('price', '>=', $minPrice);
         }
@@ -58,7 +60,6 @@ class HomeController extends Controller
             $query->where('price', '<=', $maxPrice);
         }
 
-        // Fetch the filtered products
         $data = $query->orderBy('id', 'DESC')->get();
     
         return view('layouts.shop', compact('data', 'cate'));

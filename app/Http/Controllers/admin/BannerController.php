@@ -51,12 +51,10 @@ class BannerController extends Controller
 
         $data = $request->only('title', 'description');
 
-        // Handle file upload
         $img_name = $request->img->hashName();
         $request->img->move(public_path('uploads/banners'), $img_name);
         $data['image'] = $img_name;
 
-        // Create the banner
         if (Banner::create($data)) {
             return redirect()->route('banner.index')->with('success', 'Banner đã được thêm thành công!');
         }
@@ -100,12 +98,9 @@ class BannerController extends Controller
             'description.max' => 'Mô tả không được quá 500 ký tự.',
         ]);
 
-        // Collect form data
         $data = $request->only('title', 'description');
 
-        // Handle image upload
         if ($request->hasFile('img')) {
-            // Delete old image if it exists
             if ($banner->image && file_exists(public_path('uploads/banners/') . $banner->image)) {
                 unlink(public_path('uploads/banners/') . $banner->image);
             }
@@ -115,7 +110,6 @@ class BannerController extends Controller
             $data['image'] = $img_name;
         }
 
-        // Update the banner
         if ($banner->update($data)) {
             return redirect()->route('banner.index')->with('success', 'Banner đã được cập nhật!');
         }
@@ -129,15 +123,12 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        // Check and delete the banner's image if it exists
         if ($banner->image && file_exists(public_path('uploads/banners/') . $banner->image)) {
             unlink(public_path('uploads/banners/') . $banner->image);
         }
 
-        // Delete the banner record
         $banner->delete();
 
-        // Redirect back with a success message
         return redirect()->route('banner.index')->with('success', 'Banner đã được xóa thành công!');
     }
 

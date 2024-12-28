@@ -62,6 +62,9 @@ https://templatemo.com/tm-559-NMN SHOP-shop
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('layouts.about')}}">Giới Thiệu</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('layouts.contact')}}">Liên hệ</a>
+                        </li>
                     </ul>
                 </div>
                 
@@ -70,7 +73,7 @@ https://templatemo.com/tm-559-NMN SHOP-shop
                         <a class="nav-icon position-relative text-decoration-none" href="">
                             <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
                         </a>
-                        <a class="nav-icon position-relative text-decoration-none ms-3" href="{{ route('admin.logout') }}">
+                        <a class="nav-icon position-relative text-decoration-none ms-3" href="{{ route('logout') }}">
                             Logout
                         </a>
                     @else
@@ -197,9 +200,8 @@ https://templatemo.com/tm-559-NMN SHOP-shop
             <div class="container">
                 <div class="row pt-2">
                     <div class="col-12">
-                        <p class="text-left text-light">
-                            Copyright &copy; 2021 Company Name 
-                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                        <p class="text-center text-light">
+                            Copyright &copy; 2024 
                         </p>
                     </div>
                 </div>

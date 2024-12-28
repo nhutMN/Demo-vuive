@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class CartController extends Controller
 {
@@ -47,8 +49,7 @@ class CartController extends Controller
         'address' => 'required|string|max:500',
     ]);
 
-    // Tạo đơn hàng
-    $order = \App\Models\Order::create([
+    $order = Order::create([
         'user_id' => auth()->id() ?? null,
         'name' => $validated['name'],
         'email' => $validated['email'],
@@ -60,16 +61,14 @@ class CartController extends Controller
     ]);
 
     foreach ($cart->items as $item) {
-        // Tạo chi tiết đơn hàng
-        \App\Models\OrderItem::create([
+        OrderItem::create([
             'order_id' => $order->id,
             'product_id' => $item->id,
             'price' => $item->price,
             'quantity' => $item->quantity,
         ]);
 
-        // Cập nhật số lượng sản phẩm trong kho
-        $product = \App\Models\Product::find($item->id);
+        $product = Product::find($item->id);
         if ($product) {
             if ($product->quantity >= $item->quantity) {
                 $product->quantity -= $item->quantity;
@@ -80,7 +79,6 @@ class CartController extends Controller
         }
     }
 
-    // Xóa giỏ hàng
     $cart->clear();
 
     return redirect()->route('cart.view')->with('success', 'Thanh toán thành công! Đơn hàng của bạn đã được lưu.');

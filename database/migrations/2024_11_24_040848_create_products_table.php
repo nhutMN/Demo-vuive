@@ -22,7 +22,6 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0)->nullable();
             $table->timestamps();
 
-            // Khóa ngoại với bảng categories
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }

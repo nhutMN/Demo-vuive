@@ -28,6 +28,7 @@ use App\Http\Controllers\layouts\CustomerController;
 Route::group(['prefix' => ''], function(){
     Route::get('/', [HomeController::class, 'trang_chu'])->name('layouts.trangchu');
     Route::get('/about', [HomeController::class, 'about'])->name('layouts.about');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('layouts.contact');
     Route::get('/shop', [HomeController::class, 'home'])->name('layouts.home');
     Route::get('/product/{product}',[HomeController::class, 'detail'])->name('layouts.detail');
     Route::get('/shop/{categoryId?}', [HomeController::class, 'home'])->name('shop');
